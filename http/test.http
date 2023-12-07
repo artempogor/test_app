@@ -1,4 +1,4 @@
-# @name регистрация по почте и паролю телефона
+# @name регистрация пользователя по почте и паролю
 POST {{host}}/register
 Accept: application/json
 Content-Type: application/json
@@ -85,7 +85,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 ###
 
-# @name просмотр поста
+# @name список поста
 GET {{host}}/posts/
 Accept: application/json
 Content-Type: application/json
