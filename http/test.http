@@ -1,0 +1,99 @@
+# @name регистрация по почте и паролю телефона
+POST {{host}}/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Кузя Лакомкин",
+  "email": "artem1278495@gmail.com",
+  "password": "123456",
+  "password_confirmation": "123456"
+}
+
+###
+# @name авторизация
+POST {{host}}/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "artem1278495@gmail.com",
+  "password": "123456"
+}
+
+
+###
+# @name выход
+POST {{host}}/logout
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+###
+
+# @name обновить токен
+POST {{host}}/refresh
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+###
+
+# @name создание поста
+POST {{host}}/posts
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "topic": "Охота и рыбалка",
+  "title": "Ловля карася на карпа",
+  "content": "Ловля карася на карпа.Ловля карася на карпа.Ловля карася на карпа.Ловля карася на карпа?",
+  "published_at": "2024-08-04T14:33:13.000000Z"
+}
+
+###
+
+# @name обновление поста
+PATCH {{host}}/posts/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "topic": "Охота и рыбалка",
+  "title": "Ловля карася на сома",
+  "content": "Ловля карася на карпа.Ловля карася на карпа.Ловля карася на карпа.Ловля карася на карпа?",
+}
+
+###
+
+# @name удаление поста
+DELETE {{host}}/posts/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name просмотр поста
+GET {{host}}/posts/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+
+# @name просмотр поста
+GET {{host}}/posts/
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "order_by": "asc",
+  "field": "updated_at",
+  "begin_date": "2020-08-04T14:33:13.000000Z",
+  "end_date": "2025-08-04T14:33:13.000000Z"
+}
