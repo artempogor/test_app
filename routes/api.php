@@ -27,7 +27,7 @@ Route::controller(PostController::class)
     ->middleware('auth:api')
     ->group(function () {
         Route::post('/', 'create');
-        Route::get('/', 'list');
+        Route::get('/', 'list')->withoutMiddleware('auth:api');
         Route::patch('/{postId}', 'update');
         Route::delete('/{postId}', 'delete');
         Route::get('/{postId}', 'view');
