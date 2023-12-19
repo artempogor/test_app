@@ -12,7 +12,9 @@ trait HasStaticModel
     /**
      * @var Model
      */
-    protected Model $model;
+    protected $model;
+
+    protected static string $modelClass;
 
     /**
      * @param array $attributes
@@ -20,6 +22,12 @@ trait HasStaticModel
      */
     public function newModel(array $attributes = []): Model
     {
+        if (!$this->model) {
+            if (!static::$modelClass) {
+                throw new \RuntimeException('Model class doesn\'t init in ' . __CLASS__);
+            }
+            $this->model = new static::$modelClass($attributes);
+        }
         return $this->model;
     }
 

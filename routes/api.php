@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PatternController;
 use App\Http\Controllers\Api\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,12 @@ Route::controller(PostController::class)
         Route::patch('/{postId}', 'update');
         Route::delete('/{postId}', 'delete');
         Route::get('/{postId}', 'view');
+    });
+
+Route::controller(PatternController::class)
+    ->prefix('test-pattern')
+    ->middleware('auth:api')
+    ->group(function () {
+        Route::post('/singleton-order', 'buyItem');
+        Route::post('/register-user', 'register');
     });

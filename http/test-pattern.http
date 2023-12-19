@@ -1,0 +1,11 @@
+# @name Тест антипатерна singleton
+POST {{host}}/test-pattern/singleton-order
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+# @name Тест антипатерна singleton
+POST {{host}}/test-pattern/register-user
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
