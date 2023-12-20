@@ -27,11 +27,11 @@ Route::controller(PostController::class)
     ->prefix('posts')
     ->middleware('auth:api')
     ->group(function () {
-        Route::post('/', 'create');
-        Route::get('/', 'list')->withoutMiddleware('auth:api');
-        Route::patch('/{postId}', 'update');
-        Route::delete('/{postId}', 'delete');
-        Route::get('/{postId}', 'view');
+        Route::post('/', 'create')->name('posts.create');
+        Route::get('/', 'list')->withoutMiddleware('auth:api')->name('posts.list');
+        Route::patch('/{postId}', 'update')->name('posts.update');
+        Route::delete('/{postId}', 'delete')->name('posts.delete');
+        Route::get('/{postId}', 'view')->name('posts.view');
     });
 
 Route::controller(PatternController::class)
