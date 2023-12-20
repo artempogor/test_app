@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Tests\Support\FakerTrait;
 use Tests\TestCase;
 
@@ -13,6 +14,8 @@ class PostTest extends TestCase
 
     public function test_list(): void
     {
+        Artisan::call('migrate');
+
         $response = $this->get('/api/posts');
 
         $response->assertStatus(200);
@@ -79,7 +82,6 @@ class PostTest extends TestCase
     public function test_without_auth(): void
     {
         $postId = Post::all()->whereNull('deleted_at')->last()->getKey();
-
 
         $create = $this->patchJson(route('posts.update', ['postId' => $postId]), [
                 "topic" => "Охота и рыбалк1а",

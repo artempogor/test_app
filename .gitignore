@@ -18,3 +18,4 @@ yarn-error.log
 /.idea
 /.vscode
 /http/http-client.env.json
+/db
