@@ -3,39 +3,29 @@
 namespace Tests\Feature;
 
 use App\Models\Post;
-use App\Models\User;
-use Illuminate\Support\Facades\Artisan;
 use Tests\Support\FakerTrait;
+use Tests\Support\SupportTestTrait;
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
     use FakerTrait;
-
-    public function test_list(): void
-    {
-        Artisan::call('migrate');
-
-        $response = $this->get('/api/posts');
-
-        $response->assertStatus(200);
-
-    }
-
+    use SupportTestTrait;
     public function test_create(): void
     {
-        $user = User::factory()->create();
+        $this->boot();
 
-        $response = $this->actingAs($user)->postJson(route('posts.create'), [
+        $response = $this->actingAs($this->user())->postJson(route('posts.create'), [
                 "topic" => $this->getFaker()->text(1000),
                 "title" => $this->getFaker()->text(1000),
                 "content" => $this->getFaker()->text(1000),
                 "published_at" => now()->addMinute(),
             ]
         );
+
         $response->assertStatus(422);
 
-        $response = $this->actingAs($user)->postJson(route('posts.create'), [
+        $response = $this->actingAs($this->user())->postJson(route('posts.create'), [
                 "topic" => $this->getFaker()->text(99),
                 "title" => $this->getFaker()->text(99),
                 "content" => $this->getFaker()->text(99),
@@ -46,42 +36,37 @@ class PostTest extends TestCase
         $response->assertStatus(201);
     }
 
-    public function test_update(): void
+    public function test_list(): void
     {
-        $user = User::factory()->create();
-
-        $postId = Post::all()->whereNull('deleted_at')->last()->getKey();
-
-        $response = $this->actingAs($user)->patchJson(route('posts.update', ['postId' => $postId]), [
-                "topic" => $this->getFaker()->title(),
-                "title" => "Ловля карася на карпа",
-            ]
-        );
+        $response = $this->get('/api/posts');
 
         $response->assertStatus(200);
 
-        $response = $this->actingAs($user)->patchJson(route('posts.update', ['postId' => $postId]), [
-                "topic" => $this->getFaker()->title(),
-                "title" => "Ловля карася на карпа",
-            ]
-        );
-        $response->assertStatus(200);
     }
 
-    public function test_delete(): void
+    public function test_update(): void
     {
-        $user = User::factory()->create();
+        $postId = Post::all()->whereNull('deleted_at')->first()->getKey();
 
-        $postId = Post::all()->whereNull('deleted_at')->last()->getKey();
+        $response = $this->actingAs($this->user())->patchJson(route('posts.update', ['postId' => $postId]), [
+                "topic" => $this->getFaker()->title(),
+                "title" => "Ловля карася на карпа",
+            ]
+        );
 
-        $response = $this->actingAs($user)->deleteJson(route('posts.delete', ['postId' => $postId]));
+        $response->assertStatus(200);
 
+        $response = $this->actingAs($this->user())->patchJson(route('posts.update', ['postId' => $postId]), [
+                "topic" => $this->getFaker()->title(),
+                "title" => "Ловля карася на карпа",
+            ]
+        );
         $response->assertStatus(200);
     }
 
     public function test_without_auth(): void
     {
-        $postId = Post::all()->whereNull('deleted_at')->last()->getKey();
+        $postId = Post::all()->whereNull('deleted_at')->first()->getKey();
 
         $create = $this->patchJson(route('posts.update', ['postId' => $postId]), [
                 "topic" => "Охота и рыбалк1а",
@@ -104,5 +89,14 @@ class PostTest extends TestCase
         );
 
         $delete->assertStatus(401);
+    }
+
+    public function test_delete(): void
+    {
+        $postId = Post::all()->whereNull('deleted_at')->first()->getKey();
+
+        $response = $this->actingAs($this->user())->deleteJson(route('posts.delete', ['postId' => $postId]));
+
+        $response->assertStatus(200);
     }
 }
