@@ -20,7 +20,7 @@ class PostUpdateServiceParams
     public function toRepositoryParams(): PostUpdateRepositoryParams
     {
         return new PostUpdateRepositoryParams([
-            'post_id' => $this->postId,
+            'id' => $this->postId,
             'topic' => $this->topic,
             'title' => $this->title,
             'content' => $this->content,
