@@ -27,7 +27,7 @@ Content-Type: application/json
 POST {{host}}/logout
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 
 
 ###
@@ -36,7 +36,7 @@ Authorization: Bearer {{token}}
 POST {{host}}/refresh
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 
 
 ###
