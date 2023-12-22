@@ -2,7 +2,7 @@
 POST {{host}}/posts
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 
 {
   "topic": "Охота и рыбалка",
@@ -17,7 +17,7 @@ Authorization: Bearer {{token}}
 PATCH {{host}}/posts/1
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 
 {
   "topic": "Охота и рыбалка",
@@ -31,7 +31,7 @@ Authorization: Bearer {{token}}
 DELETE {{host}}/posts/1
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 
 ###
 
@@ -39,14 +39,13 @@ Authorization: Bearer {{token}}
 GET {{host}}/posts/1
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{access_token}}
 ###
 
-# @name список поста
+# @name список постов
 GET {{host}}/posts/
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer {{token}}
 
 {
   "order_by": "asc",
