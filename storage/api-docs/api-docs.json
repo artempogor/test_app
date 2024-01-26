@@ -1,0 +1,512 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Documentation",
+        "description": "Api Documentation",
+        "contact": {
+            "name": "Artem Pogorelov",
+            "email": "artem1278495@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Регистрация нового пользователя",
+                "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/RegistrationRequest"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Пользователь зарегистрирован"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Авторизация пользователя",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Пароль пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Пользователь авторизован"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Выход",
+                "operationId": "28d48c13fca984400ac8de99f54ee13a",
+                "responses": {
+                    "201": {
+                        "description": "Выход выполнен"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Обновление токена",
+                "operationId": "43a6bea9efa4b685457298ce9505de70",
+                "responses": {
+                    "201": {
+                        "description": "Обновление токена авторизации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Retrieve a list of posts",
+                "operationId": "441fcea231487c75ba173ca0803b51aa",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PostResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Создание поста",
+                "operationId": "ccc642d639ab35e23161fa8d2f37a9a3",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/PostCreateRequest"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PostResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/posts/{postId}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Просмотр поста",
+                "operationId": "c3ec048f13728be97b12c1d0a4bc563f",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PostResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Удаление поста",
+                "operationId": "0dd6e1fb606ba7e9424886f25c7772e6",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Пост удалён",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Обновление поста",
+                "operationId": "af91a85ac4f38954e10d8b8f5c05c701",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/PostUpdateRequest"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/PostResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RegistrationRequest": {
+                "title": "RegistrationRequest",
+                "description": "Registration request body",
+                "required": [
+                    "name,email,password"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Игорь Охота"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "igor@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "password123"
+                    }
+                },
+                "type": "object"
+            },
+            "PostCreateRequest": {
+                "title": "PostCreateRequest",
+                "description": "Post create request body",
+                "required": [
+                    "topic,title,content,published_at"
+                ],
+                "properties": {
+                    "topic": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота и рыбалка"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота на медведей"
+                    },
+                    "content": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота на медведей и все об этом.."
+                    },
+                    "published_at": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "2024-08-04T14:33:13.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PostUpdateRequest": {
+                "title": "PostUpdateRequest",
+                "description": "Post create request body",
+                "properties": {
+                    "topic": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота и рыбалка"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота на медведей"
+                    },
+                    "content": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "Охота на медведей и все об этом.."
+                    },
+                    "published_at": {
+                        "type": "string",
+                        "maximum": 100,
+                        "example": "2024-08-04T14:33:13.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PostResource": {
+                "title": "Post",
+                "description": "Post model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the post",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "topic": {
+                        "description": "Тема поста",
+                        "type": "string",
+                        "example": "Охота и рыбалка"
+                    },
+                    "title": {
+                        "description": "Заголовок поста",
+                        "type": "string",
+                        "example": "Охота на медведей"
+                    },
+                    "content": {
+                        "description": "Content of the post",
+                        "type": "string",
+                        "example": "При охоте на медведей нужно учесть несколько важных моментов..."
+                    },
+                    "created_at": {
+                        "description": "Date and time when the post was created",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-01T12:00:00Z"
+                    },
+                    "publish_at": {
+                        "description": "Date and time when the post was last updated",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-01T13:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "SuccessResource": {
+                "title": "SuccessResource",
+                "description": "Success resource",
+                "required": [
+                    "success",
+                    "data"
+                ],
+                "properties": {
+                    "success": {
+                        "description": "Success status",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "data": {
+                        "description": "Data",
+                        "type": "object",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "Bearer"
+            }
+        }
+    }
+}

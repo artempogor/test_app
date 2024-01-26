@@ -7,7 +7,30 @@ namespace App\Http\Resources;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Schema(
+ *     title="SuccessResource",
+ *     description="Success resource",
+ *     required={"success", "data"},
+ *     type="object",
+ *     @OA\Property(
+ *         property="success",
+ *         type="boolean",
+ *         description="Success status",
+ *         example="true"
+ *     ),
+ *     @OA\Property(
+ *         property="data",
+ *         type="object",
+ *         description="Data",
+ *         example="true"
+ *     ),
+ )
+ )
+ * )
+ */
 class SuccessResource extends JsonResource
 {
 
