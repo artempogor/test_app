@@ -19,3 +19,5 @@ yarn-error.log
 /.vscode
 /http/http-client.env.json
 /db
+/resources/views/vendor/l5-swagger/.gitkeep
+/resources/views/vendor/l5-swagger/index.blade.php

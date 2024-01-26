@@ -125,7 +125,7 @@
                 "tags": [
                     "Posts"
                 ],
-                "summary": "Retrieve a list of posts",
+                "summary": "Список постов",
                 "operationId": "441fcea231487c75ba173ca0803b51aa",
                 "responses": {
                     "200": {

@@ -171,7 +171,7 @@ class PostController extends Controller
      * @OA\Get(
      *     path="/posts",
      *     tags={"Posts"},
-     *     summary="Retrieve a list of posts",
+     *     summary="Список постов",
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
