@@ -120,6 +120,64 @@
                 ]
             }
         },
+        "/media/upload": {
+            "post": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Загрузка медиа-файла",
+                "operationId": "62a0f25736150a28fd6e3c94977df166",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "description": "Binary content of file",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MediaResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/posts": {
             "get": {
                 "tags": [
@@ -357,7 +415,7 @@
         "schemas": {
             "RegistrationRequest": {
                 "title": "RegistrationRequest",
-                "description": "Registration request body",
+                "description": "Регистрация",
                 "required": [
                     "name,email,password"
                 ],
@@ -433,6 +491,46 @@
                         "type": "string",
                         "maximum": 100,
                         "example": "2024-08-04T14:33:13.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "MediaResource": {
+                "title": "Media",
+                "description": "Media model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the post",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "topic": {
+                        "description": "Тема поста",
+                        "type": "string",
+                        "example": "Охота и рыбалка"
+                    },
+                    "title": {
+                        "description": "Заголовок поста",
+                        "type": "string",
+                        "example": "Охота на медведей"
+                    },
+                    "content": {
+                        "description": "Content of the post",
+                        "type": "string",
+                        "example": "При охоте на медведей нужно учесть несколько важных моментов..."
+                    },
+                    "created_at": {
+                        "description": "Date and time when the post was created",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-01T12:00:00Z"
+                    },
+                    "publish_at": {
+                        "description": "Date and time when the post was last updated",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-01T13:00:00Z"
                     }
                 },
                 "type": "object"

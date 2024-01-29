@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PatternController;
 use App\Http\Controllers\Api\PostController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,13 @@ Route::controller(PostController::class)
         Route::patch('/{postId}', 'update')->name('posts.update');
         Route::delete('/{postId}', 'delete')->name('posts.delete');
         Route::get('/{postId}', 'view')->name('posts.view');
+    });
+
+Route::controller(MediaController::class)
+    ->prefix('media')
+    ->middleware('auth:api')
+    ->group(function () {
+        Route::post('/upload', 'upload')->name('media.upload');
     });
 
 Route::controller(PatternController::class)
