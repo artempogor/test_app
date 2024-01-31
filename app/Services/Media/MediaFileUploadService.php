@@ -41,15 +41,15 @@ class MediaFileUploadService
 
         $path = $this->pathFromType($mimeType);
 
-        Storage::disk(config('media.disk'))->put($path, $params->file);
+        Storage::put($path, $params->file);
 
         $repositoryParams = new MediaUploadRepositoryParams([
             'name' => $name,
             'mime_type' => $mimeType,
             'file_name' => $params->file->getClientOriginalName(),
             'path' => $path . $name,
-            'disk' => config('media.disk'),
-            'file_hash' => hash_file(config('media.hash_algo'), Storage::path($path . $name)),
+            'disk' => config('filesystems.default'),
+            'file_hash' => hash_file(config('filesystems.hash_algo'), Storage::path($path . $name)),
             'collection' => null,
             'size' => $params->file->getSize(),
         ]);
@@ -62,12 +62,18 @@ class MediaFileUploadService
     private function pathFromType(string $type): string
     {
         $path = match ($type) {
-            'image' => 'images',
+            'image/jpeg' => 'images',
             'video' => 'videos',
             'document' => 'documents',
             default => 'others',
         };
 
-        return $path . self::PATH;
+        if (($type === 'test') && config('app.env') === 'local') {
+            $path = 'testing';
+        }
+
+        $path .= '/';
+
+        return self::PATH . $path;
     }
 }

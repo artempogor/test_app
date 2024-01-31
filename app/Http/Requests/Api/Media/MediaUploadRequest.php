@@ -18,7 +18,7 @@ class MediaUploadRequest extends FormRequest
         return [
             'file' => [
                 'required',
-                File::types(['jpg', 'png', 'jpeg'])->max(1024 * 1024 * 5)
+                File::types(['jpg', 'png', 'jpeg'])->max(1024 * 5)
             ],
         ];
     }

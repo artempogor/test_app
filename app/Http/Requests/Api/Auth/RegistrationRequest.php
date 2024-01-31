@@ -9,7 +9,7 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Schema(
  *      title="RegistrationRequest",
- *      description="Registration request body",
+ *      description="Регистрация",
  *      required={"name,email,password"},
  *      type="object",
  *   @OA\Property(property="name", type="string", example="Игорь Охота",maximum=100),

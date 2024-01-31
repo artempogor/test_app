@@ -11,9 +11,6 @@ use OpenApi\Annotations as OA;
 /**
  * @property Post $resource
  *
- */
-
-/**
  * @OA\Schema(
  *   schema="PostResource",
  *   title="Post",
@@ -61,6 +58,7 @@ use OpenApi\Annotations as OA;
  *   )
  * )
  */
+
 
 class PostResource extends JsonResource
 {

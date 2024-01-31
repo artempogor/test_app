@@ -6,6 +6,7 @@ use App\Http\Resources\SuccessResourceTrait;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 use OpenApi\Annotations as OA;
 
 /**
@@ -72,7 +73,7 @@ class MediaResource extends JsonResource
         return [
             'id' => $this->resource->getKey(),
             'name' => $this->resource->name,
-            'path' => $this->resource->path,
+            'path' => Storage::disk($this->resource->disk)->url($this->resource->path),
             'mime_type' => $this->resource->mime_type,
             'size' => $this->resource->size,
             'created_at' => $this->resource->created_at,

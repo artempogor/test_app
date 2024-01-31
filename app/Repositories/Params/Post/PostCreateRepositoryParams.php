@@ -35,13 +35,14 @@ class PostCreateRepositoryParams extends BaseRepositoryParams
                 'date',
                 'after:now',
             ],
-            'author_id' =>
+            'author_id' => [
                 'integer',
-            'required',
-            Rule::exists(
-                User::getStaticTable(),
-                User::getStaticQualifiedKeyName()
-            )
+                'required',
+                Rule::exists(
+                    User::getStaticTable(),
+                    User::getStaticQualifiedKeyName()
+                ),
+            ],
         ]);
     }
 }
