@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MediaController;
-use App\Http\Controllers\Api\PatternController;
 use App\Http\Controllers\Api\PostController;
+use App\Pattern\PropertyContainer\PropertyContainerController;
+use App\Pattern\Singleton\SingletonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::post('login', 'login')->name('login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
@@ -42,7 +43,7 @@ Route::controller(MediaController::class)
         Route::post('/upload', 'upload')->name('media.upload');
     });
 
-Route::controller(PatternController::class)
+Route::controller(SingletonController::class)
     ->prefix('test-pattern')
     ->middleware('auth:api')
     ->group(function () {
