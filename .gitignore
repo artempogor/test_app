@@ -21,3 +21,6 @@ yarn-error.log
 /db
 /resources/views/vendor/l5-swagger/.gitkeep
 /resources/views/vendor/l5-swagger/index.blade.php
+/package-lock.json
+/postcss.config.js
+/tailwind.config.js
