@@ -1,5 +1,6 @@
 <?php
 
+use App\Pattern\PropertyContainer\PropertyContainerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controller(PropertyContainerController::class)
+    ->prefix('property-container')
+    ->group(function () {
+        Route::get('/', 'propertyContainer');
+    });
