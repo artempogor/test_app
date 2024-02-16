@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Pattern\Singleton;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SuccessResource;
-use App\Pattern\Singleton\OrderService;
-use App\Pattern\Singleton\RegisterService;
 
-class PatternController extends Controller
+class SingletonController extends Controller
 {
     public function __construct(
         protected readonly OrderService    $orderService,
