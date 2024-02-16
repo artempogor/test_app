@@ -1,5 +1,6 @@
 <?php
 
+use App\Pattern\Delegation\DelegationController;
 use App\Pattern\PropertyContainer\PropertyContainerController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
-Route::controller(PropertyContainerController::class)
-    ->prefix('property-container')
-    ->group(function () {
-        Route::get('/', 'propertyContainer');
-    });
+Route::get('/patterns-list', function () {
+    return view('pattern.pattern-list');
+})->name('pattern-list');
+
+Route::prefix('/patterns')->group(function () {
+    Route::get('/property-container', PropertyContainerController::class)->name('propertyContainer');
+    Route::get('/delegation', DelegationController::class)->name('delegation');
+});
