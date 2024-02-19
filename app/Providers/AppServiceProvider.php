@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Pattern\Delegation\DelegationPattern;
-use App\Pattern\EventChanel\EventChanelPattern;
-use App\Pattern\PropertyContainer\PropertyContainerPattern;
+use App\Pattern\Fundamental\Delegation\DelegationPattern;
+use App\Pattern\Fundamental\EventChanel\EventChanelPattern;
+use App\Pattern\Fundamental\Interface\InterfacePattern;
+use App\Pattern\Fundamental\PropertyContainer\PropertyContainerPattern;
 use App\Pattern\Singleton\LoggerSingleton;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         new DelegationPattern();
         new EventChanelPattern();
         new PropertyContainerPattern();
+        new InterfacePattern();
     }
 }

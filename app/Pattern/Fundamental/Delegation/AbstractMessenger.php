@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Pattern\Delegation;
+namespace App\Pattern\Fundamental\Delegation;
 
 abstract class AbstractMessenger implements MessengerInterface
 {

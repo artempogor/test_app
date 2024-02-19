@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Pattern\Delegation;
+namespace App\Pattern\Fundamental\Delegation;
 
 use Barryvdh\Debugbar\Facades\Debugbar;
 
-class SmsMessenger extends AbstractMessenger
+class EmailMessenger extends AbstractMessenger
 {
     public function send(): bool
     {
