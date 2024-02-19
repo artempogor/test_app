@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Pattern\Delegation\DelegationPattern;
+use App\Pattern\EventChanel\EventChanelPattern;
+use App\Pattern\PropertyContainer\PropertyContainerPattern;
 use App\Pattern\Singleton\LoggerSingleton;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        new DelegationPattern();
+        new EventChanelPattern();
+        new PropertyContainerPattern();
     }
 }

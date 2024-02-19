@@ -7,13 +7,6 @@
 
     <title>Cписок шаблонов проектирования</title>
 </head>
-@php
-    $patterns = [
-        'propertyContainer' => 'Контейнер свойств',
-        'delegation' => 'Делегирование',
-        'eventChanel' => 'Канал событий',
-        ];
-@endphp
 <body class="antialiased">
 <nav class="flex bg-gray-50 text-gray-700 border border-gray-200 py-3 px-5 rounded-lg dark:bg-gray-800 dark:border-gray-700"
      aria-label="Breadcrumb">
@@ -45,9 +38,9 @@
     <div class="px-6 sm:px-8 max-w-5xl m-auto">
         <h1 class="text-left font-semibold text-sm mt-6 xl:text-xl">Список шаблонов:</h1>
         <ul class="border border-gray-200 rounded overflow-hidden shadow-md mt-6">
-            @foreach($patterns as $pattern => $name)
+            @foreach(cache('patterns') as $pattern)
                 <li class="px-4 py-2 bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out">
-                    <a href="{{route($pattern)}}">{{$name}}</a>
+                    <a href="{{route($pattern['route'])}}">{{$pattern['name']}}</a>
                 </li>
             @endforeach
         </ul>
