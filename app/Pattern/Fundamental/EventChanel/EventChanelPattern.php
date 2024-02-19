@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Pattern\EventChanel;
+namespace App\Pattern\Fundamental\EventChanel;
 
 use App\Pattern\PatternDescription;
 

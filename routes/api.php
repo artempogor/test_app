@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MediaController;
 use App\Http\Controllers\Api\PostController;
-use App\Pattern\PropertyContainer\PropertyContainerController;
 use App\Pattern\Singleton\SingletonController;
 use Illuminate\Support\Facades\Route;
 

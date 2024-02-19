@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Pattern\PropertyContainer;
+namespace App\Pattern\Fundamental\PropertyContainer;
 
 use App\Pattern\PatternDescription;
 

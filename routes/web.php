@@ -1,8 +1,9 @@
 <?php
 
-use App\Pattern\Delegation\DelegationController;
-use App\Pattern\EventChanel\EventChanelController;
-use App\Pattern\PropertyContainer\PropertyContainerController;
+use App\Pattern\Fundamental\Delegation\DelegationController;
+use App\Pattern\Fundamental\EventChanel\EventChanelController;
+use App\Pattern\Fundamental\Interface\InterfaceController;
+use App\Pattern\Fundamental\PropertyContainer\PropertyContainerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,5 @@ Route::prefix('/patterns')->group(function () {
     Route::get('/property-container', PropertyContainerController::class)->name('propertyContainer');
     Route::get('/delegation', DelegationController::class)->name('delegation');
     Route::get('/event-chanel', EventChanelController::class)->name('eventChanel');
+    Route::get('/interface', InterfaceController::class)->name('interface');
 });
