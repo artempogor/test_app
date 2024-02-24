@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\UsersController;
+use App\Http\Middleware\ChatAuthMiddleware;
 use App\Pattern\Fundamental\Delegation\DelegationController;
 use App\Pattern\Fundamental\EventChanel\EventChanelController;
 use App\Pattern\Fundamental\Interface\InterfaceController;
@@ -31,3 +34,11 @@ Route::prefix('/patterns')->group(function () {
     Route::get('/event-chanel', EventChanelController::class)->name('eventChanel');
     Route::get('/interface', InterfaceController::class)->name('interface');
 });
+
+Route::controller(ChatController::class)
+    ->prefix('chat')
+    ->group(function () {
+        Route::get('/messages', 'messages');
+        Route::post('/send-message', 'sendMessage');
+        Route::get('/', 'index')->name('chat');
+    });
