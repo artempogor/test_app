@@ -2,6 +2,8 @@
 
 namespace App\Pattern;
 
+use App\Pattern\Enums\PatternSectionsEnum;
+
 /**
  * @property string $description
  * @property string $name
@@ -19,4 +21,6 @@ interface PatternDescriptionInterface
     public function getAdvantages(): string;
 
     public function getDisadvantages(): string;
+
+    public function getSection(): PatternSectionsEnum;
 }

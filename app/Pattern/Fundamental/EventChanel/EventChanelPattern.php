@@ -2,10 +2,13 @@
 
 namespace App\Pattern\Fundamental\EventChanel;
 
+use App\Pattern\Enums\PatternSectionsEnum;
 use App\Pattern\PatternDescription;
 
 class EventChanelPattern extends PatternDescription
 {
+    public PatternSectionsEnum $section = PatternSectionsEnum::FUNDAMENTAL;
+
     public string $route = 'eventChanel';
 
     public string $name = 'Канал событий';

@@ -3,10 +3,13 @@
 namespace App\Pattern\Fundamental\Delegation;
 
 
+use App\Pattern\Enums\PatternSectionsEnum;
 use App\Pattern\PatternDescription;
 
 class DelegationPattern extends PatternDescription
 {
+    public PatternSectionsEnum $section = PatternSectionsEnum::FUNDAMENTAL;
+
     public string $route = 'delegation';
 
     public string $name = 'Делегирование';

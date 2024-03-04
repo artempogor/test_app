@@ -2,10 +2,13 @@
 
 namespace App\Pattern\Fundamental\PropertyContainer;
 
+use App\Pattern\Enums\PatternSectionsEnum;
 use App\Pattern\PatternDescription;
 
 class PropertyContainerPattern extends PatternDescription
 {
+    public PatternSectionsEnum $section = PatternSectionsEnum::FUNDAMENTAL;
+
     public string $route = 'propertyContainer';
 
     public string $name = 'Контейнер свойств';

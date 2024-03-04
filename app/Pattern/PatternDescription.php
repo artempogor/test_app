@@ -2,6 +2,7 @@
 
 namespace App\Pattern;
 
+use App\Pattern\Enums\PatternSectionsEnum;
 use Illuminate\Support\Facades\Cache;
 
 class PatternDescription implements PatternDescriptionInterface
@@ -11,6 +12,8 @@ class PatternDescription implements PatternDescriptionInterface
     protected string $description;
     protected string $advantages;
     protected string $disadvantages;
+    protected PatternSectionsEnum $section;
+
 
     public function __construct()
     {
@@ -42,6 +45,11 @@ class PatternDescription implements PatternDescriptionInterface
         return $this->disadvantages;
     }
 
+    public function getSection(): Enums\PatternSectionsEnum
+    {
+        return $this->section;
+    }
+
     private function putInCache(): void
     {
         $patterns = Cache::get('patterns') ?? [];
@@ -57,6 +65,7 @@ class PatternDescription implements PatternDescriptionInterface
         $patterns[] = [
             'route' => $this->getRoute(),
             'name' => $this->getName(),
+            'section' => $this->getSection(),
         ];
 
         Cache::put('patterns', $patterns);

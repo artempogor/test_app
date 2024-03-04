@@ -36,12 +36,14 @@
 </nav>
 <div class="mt-32">
     <div class="px-6 sm:px-8 max-w-5xl m-auto">
-        <h1 class="text-left font-semibold text-sm mt-6 xl:text-xl">Список шаблонов:</h1>
+        <h1 class="text-left font-semibold text-sm mt-6 xl:text-xl">Список фундаментальных шаблонов:</h1>
         <ul class="border border-gray-200 rounded overflow-hidden shadow-md mt-6">
             @foreach(cache('patterns') as $pattern)
+                @if($pattern['section']->value === 'fundamental')
                 <li class="px-4 py-2 bg-white hover:bg-sky-100 hover:text-sky-900 border-b last:border-none border-gray-200 transition-all duration-300 ease-in-out">
                     <a href="{{route($pattern['route'])}}">{{$pattern['name']}}</a>
                 </li>
+                @endif
             @endforeach
         </ul>
     </div>

@@ -2,10 +2,13 @@
 
 namespace App\Pattern\Fundamental\Interface;
 
+use App\Pattern\Enums\PatternSectionsEnum;
 use App\Pattern\PatternDescription;
 
 class InterfacePattern extends PatternDescription
 {
+    public PatternSectionsEnum $section = PatternSectionsEnum::FUNDAMENTAL;
+
     public string $route = 'interface';
 
     public string $name = 'Интерфейс';
