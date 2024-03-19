@@ -8,6 +8,8 @@ class MediaUploadServiceParams
 {
     public function __construct(
         public readonly UploadedFile $file,
+        public readonly bool $needOptimize,
+        public readonly ?int $optimizationLevel,
     )
     {
     }

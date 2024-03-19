@@ -136,6 +136,13 @@
                                     "file"
                                 ],
                                 "properties": {
+                                    "need_optimize": {
+                                        "type": "boolean"
+                                    },
+                                    "optimize_level": {
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
                                     "file": {
                                         "description": "Binary content of file",
                                         "type": "string",

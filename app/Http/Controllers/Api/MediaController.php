@@ -29,6 +29,8 @@ class MediaController extends Controller
      *       @OA\MediaType(
      *          mediaType="multipart/form-data",
      *           @OA\Schema(
+     *               @OA\Property(property="need_optimize", type="boolean"),
+     *               @OA\Property(property="optimize_level", type="integer",example="100"),
      *               @OA\Property(
      *                   description="Binary content of file",
      *                   property="file",
