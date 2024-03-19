@@ -7,6 +7,7 @@ use App\Pattern\Fundamental\EventChanel\EventChanelPattern;
 use App\Pattern\Fundamental\Interface\InterfacePattern;
 use App\Pattern\Fundamental\PropertyContainer\PropertyContainerPattern;
 use App\Pattern\Singleton\LoggerSingleton;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,8 +22,19 @@ class AppServiceProvider extends ServiceProvider
         $logger->setDateFormat('Y-m-d H:i:s')
             ->setLogType('file')
             ->setPrefix('alert');
+
+        $this->bootHttpClients();
     }
 
+    private function bootHttpClients(): void
+    {
+        Http::macro('imageOptimize', function () {
+            $conf = config('services.image-optimize');
+            return Http::withHeaders([
+                'service-key' => $conf['service-key']
+            ])->baseUrl($conf['host']);
+        });
+    }
     /**
      * Bootstrap any application services.
      */

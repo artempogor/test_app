@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'image-optimize' => [
+        'host' => env('IMAGE_OPTIMIZER_APP_URL'),
+        'service-key' => env('IMAGE_OPTIMIZER_APP_KEY')
+    ],
 ];
